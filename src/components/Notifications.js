@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/Notifications.css";
 
 function Notifications() {
     const notifications = [
@@ -8,13 +9,17 @@ function Notifications() {
     ];
 
     return (
-        <div>
+        <div className='notifications-page'>
             <h2>Notifications</h2>
-            <ul>
+            <div className='notifications-list'>
                 {notifications.map((note, index) => (
-                    <li key={index}>{note.message}</li>
+                    <div
+                        key={index}
+                        className='notification-card'>
+                        {note.message}
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 }

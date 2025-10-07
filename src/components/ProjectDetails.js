@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/ProjectDetails.css";
 
 function ProjectDetails() {
     const project = {
@@ -9,20 +10,20 @@ function ProjectDetails() {
     };
 
     return (
-        <div>
+        <div className='project-details-page'>
             <h2>Project Details</h2>
-            <p>
-                <strong>Title:</strong> {project.title}
-            </p>
-            <p>
-                <strong>What:</strong> {project.what}
-            </p>
-            <p>
-                <strong>Why:</strong> {project.why}
-            </p>
-            <p>
-                <strong>When:</strong> {project.when}
-            </p>
+            <div className='project-details-card'>
+                <h3 className='project-title'>{project.title}</h3>
+                <p className='project-what'>
+                    <strong>What:</strong> {project.what}
+                </p>
+                <p className='project-why'>
+                    <strong>Why:</strong> {project.why}
+                </p>
+                <p className='project-when'>
+                    <strong>When:</strong> {project.when}
+                </p>
+            </div>
         </div>
     );
 }

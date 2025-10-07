@@ -1,0 +1,94 @@
+.calendar-page {
+    padding: 30px;
+    background-color: #f4f4f9;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calendar-page h2 {
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* Calendar grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Header for days of the week */
+.calendar-header {
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #e0e0e0;
+    border-radius: 6px;
+}
+
+/* Individual day cells */
+.calendar-cell {
+    min-height: 80px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 5px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/* Empty cells before the first day */
+.calendar-cell.empty {
+    background-color: transparent;
+    border: none;
+}
+
+/* Day number in cell */
+.calendar-day {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Projects inside each day */
+.calendar-project {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 5px;
+    border-radius: 4px;
+    margin-bottom: 3px;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Hover effect for day cells */
+.calendar-cell {
+    transition: all 0.2s ease;
+}
+
+.calendar-cell:hover {
+    background-color: #d0e7ff; /* more noticeable light blue */
+    cursor: pointer;
+    transform: translateY(-3px); /* slightly larger lift effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover effect for individual project badges */
+.calendar-project {
+    transition: background-color 0.2s ease;
+}
+
+.calendar-project:hover {
+    background-color: #004a99; /* darker blue for hover */
+    cursor: pointer;
+}
