@@ -1,0 +1,89 @@
+.dashboard-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background-color: #b6b6bf;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.add-project-form input,
+.add-project-button {
+    height: 48px; /* same height for all inputs and button */
+    min-width: 120px; /* minimum width to ensure uniform size */
+    flex: 1; /* inputs and button take equal space */
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 2px solid #ccc;
+    text-align: center; /* center text inside inputs and button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-project-button:hover {
+    background-color: #638ebd;
+}
+
+.project-list {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.project-card {
+    background-color: #ffffff;
+    padding: 25px 20px;
+    border-radius: 12px; /* more rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* stronger, more realistic shadow */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0; /* subtle border for realism */
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2); /* deeper shadow on hover */
+}
+
+.project-card h3 {
+    margin: 0 0 12px 0;
+    color: #222;
+    font-size: 20px;
+    text-align: left;
+}
+
+.project-card p {
+    margin: 5px 0 10px 0;
+    color: #555;
+    font-size: 15px;
+    text-align: left;
+}
+
+.project-card span {
+    font-size: 13px;
+    color: #888;
+    text-align: left;
+}
+
+.add-project-form {
+    display: flex;
+    flex-direction: row; /* horizontal layout */
+    gap: 10px;
+    width: fit-content; /* shrink form to fit its content */
+    margin: 20px auto 40px auto; /* top margin for near top, auto left/right to center */
+    justify-content: center; /* center inputs and button */
+    align-items: center;
+}
+
+.add-project-form input {
+    outline: none; /* remove default browser outline */
+}
+
+.add-project-form input:focus {
+    border: 2px solid #007bff; /* solid blue border on focus */
+}
