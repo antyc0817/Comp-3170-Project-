@@ -9,13 +9,11 @@ function CalendarView() {
     ];
 
     const year = 2025;
-    const month = 9; // October (0-indexed)
+    const month = 9;
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    // Build calendar cells
     const calendarCells = [];
-    // Add empty cells for first day offset
     for (let i = 0; i < firstDay; i++) {
         calendarCells.push(
             <div
@@ -23,7 +21,6 @@ function CalendarView() {
                 className='calendar-cell empty'></div>
         );
     }
-    // Add day cells
     for (let day = 1; day <= daysInMonth; day++) {
         const dayStr = day.toString().padStart(2, "0");
         const dateStr = `${year}-10-${dayStr}`;

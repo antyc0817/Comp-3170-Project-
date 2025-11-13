@@ -7,12 +7,11 @@
 }
 
 .login-box {
-    background-color: #9abed6dd; /* slight transparent background */
-    padding: 60px 40px; /* taller padding for length, slightly narrower width */
+    background-color: #9abed6dd;
+    padding: 60px 40px;
     border-radius: 8px;
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
-    width: 320px; /* thinner box */
-    /* remove text-align: center to allow left-aligned form elements */
+    width: 320px;
 }
 
 .login-logo {
@@ -33,14 +32,14 @@
 .login-box form {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* left-align children */
+    align-items: flex-start;
     gap: 15px;
     width: 100%;
 }
 
 .login-box input,
 .login-box button {
-    width: 100%; /* ensures same width */
+    width: 100%;
     max-width: 320px;
     padding: 12px;
     border-radius: 6px;
@@ -63,7 +62,6 @@
     border: none;
     cursor: pointer;
     font-weight: 500;
-    transition: background-color 0.3s ease;
 }
 
 .login-box button:hover {
@@ -73,12 +71,12 @@
 .checkbox-container {
     display: flex;
     align-items: center;
-    gap: 8px; /* space between checkbox and label */
-    width: auto; /* take only the necessary width */
-    max-width: 320px; /* match input width */
-    margin: 5px 0 0 0; /* top margin, no left margin */
+    gap: 8px;
+    width: auto;
+    max-width: 320px;
+    margin: 5px 0 0 0;
     font-size: 14px;
-    white-space: nowrap; /* prevent the text from wrapping to the next line */
+    white-space: nowrap;
 }
 
 .checkbox-container input {
@@ -88,5 +86,4 @@
 .checkbox-container label {
     margin: 0;
     cursor: pointer;
-    line-height: 1.2;
 }

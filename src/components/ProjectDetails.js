@@ -1,28 +1,64 @@
 import React from "react";
 import "../styles/ProjectDetails.css";
 
-function ProjectDetails() {
-    const project = {
-        title: "Roof Repair",
-        what: "Fix leaks and reinforce the roof structure",
-        why: "Prevent water damage and maintain building safety",
-        when: "2025-10-10",
-    };
-
+function ProjectDetails({ project, onClose }) {
     return (
-        <div className='project-details-page'>
-            <h2>Project Details</h2>
-            <div className='project-details-card'>
-                <h3 className='project-title'>{project.title}</h3>
-                <p className='project-what'>
-                    <strong>What:</strong> {project.what}
-                </p>
-                <p className='project-why'>
-                    <strong>Why:</strong> {project.why}
-                </p>
-                <p className='project-when'>
-                    <strong>When:</strong> {project.when}
-                </p>
+        <div className='project-details-overlay'>
+            <div className='project-details-container'>
+                <div className='project-details-content'>
+                    <div className='project-details-main'>
+                        <div className='project-details-info'>
+                            <h1 className='project-details-title'>{project.title}</h1>
+
+                            <div className='project-details-field'>
+                                <span className='project-details-label'>Details:</span>
+                                <span className='project-details-value'>
+                                    {project.details || ""}
+                                </span>
+                            </div>
+
+                            <div className='project-details-field'>
+                                <span className='project-details-label'>Date:</span>
+                                <span className='project-details-value'>
+                                    {project.date || ""}
+                                </span>
+                            </div>
+
+                            <div className='project-details-field'>
+                                <span className='project-details-label'>What:</span>
+                                <span className='project-details-value'>
+                                    {project.what || ""}
+                                </span>
+                            </div>
+
+                            <div className='project-details-field'>
+                                <span className='project-details-label'>Why:</span>
+                                <span className='project-details-value'>
+                                    {project.why || ""}
+                                </span>
+                            </div>
+
+                            <div className='project-details-field'>
+                                <span className='project-details-label'>Deadline:</span>
+                                <span className='project-details-value'>
+                                    {project.deadline || ""}
+                                </span>
+                            </div>
+
+                            <div className='project-details-field'>
+                                <span className='project-details-label'>Where:</span>
+                                <span className='project-details-value'>
+                                    {project.where || ""}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button
+                    className='back-to-dashboard-button'
+                    onClick={onClose}>
+                    ← Back to Dashboard
+                </button>
             </div>
         </div>
     );
