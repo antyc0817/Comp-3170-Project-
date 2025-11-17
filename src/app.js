@@ -9,9 +9,34 @@ import SignUp from "./components/SignUp";
 import "./styles/main.css";
 
 function App() {
-    const [page, setPage] = useState("dashboard");
+    const [page, setPage] = useState(() => {
+        const savedUser = localStorage.getItem("user");
+        return savedUser ? "dashboard" : "login";
+    });
     const [selectedProject, setSelectedProject] = useState(null);
-    
+    const [user, setUser] = useState(() => {
+        const savedUser = localStorage.getItem("user");
+        return savedUser ? JSON.parse(savedUser) : null;
+    });
+
+    useEffect(() => {
+        if (user) {
+            localStorage.setItem("user", JSON.stringify(user));
+        } else {
+            localStorage.removeItem("user");
+        }
+    }, [user]);
+
+    const handleLogin = (userData) => {
+        setUser(userData);
+        setPage("dashboard");
+    };
+
+    const handleLogout = () => {
+        setUser(null);
+        setPage("login");
+    };
+
     const defaultProjects = [
         {
             id: 1,
@@ -77,30 +102,37 @@ function App() {
         setPage("dashboard");
     };
 
+    if (!user && (page !== "login" && page !== "signup")) {
+        setPage("login");
+        return null;
+    }
+
     return (
         <div className='app-container'>
             <Navbar
                 setPage={setPage}
                 currentPage={page}
+                user={user}
+                onLogout={handleLogout}
             />
             <main className='content'>
-                {page === "dashboard" && (
+                {page === "dashboard" && user && (
                     <Dashboard
                         projects={projects}
                         setProjects={setProjects}
                         onViewDetails={handleViewProjectDetails}
                     />
                 )}
-                {page === "calendar" && <CalendarView />}
-                {page === "notifications" && <Notifications />}
+                {page === "calendar" && user && <CalendarView projects={projects} />}
+                {page === "notifications" && user && <Notifications projects={projects} />}
                 {page === "projectDetails" && selectedProject && (
                     <ProjectDetails
                         project={selectedProject}
                         onClose={handleCloseProjectDetails}
                     />
                 )}
-                {page === "login" && <Login />}
-                {page === "signup" && <SignUp />}
+                {page === "login" && <Login onLogin={handleLogin} onSwitchToSignUp={() => setPage("signup")} />}
+                {page === "signup" && <SignUp onSignUp={handleLogin} onSwitchToLogin={() => setPage("login")} />}
             </main>
         </div>
     );

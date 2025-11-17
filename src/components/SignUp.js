@@ -2,15 +2,43 @@ import React, { useState } from "react";
 import "../styles/SignUp.css";
 import logo from "../assets/image1.png";
 
-function SignUp() {
+function SignUp({ onSignUp, onSwitchToLogin }) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
 
     const handleSignUp = (e) => {
         e.preventDefault();
-        alert(`Signed up as ${firstName} ${lastName} (${email})`);
+        setError("");
+        setSuccess("");
+
+        if (!firstName || !lastName || !email || !password) {
+            setError("Please fill in all fields.");
+            return;
+        }
+
+        const users = JSON.parse(localStorage.getItem("users") || "{}");
+
+        if (users[email]) {
+            setError("An account with this email already exists.");
+            return;
+        }
+
+        const newUser = {
+            firstName,
+            lastName,
+            email,
+            password
+        };
+
+        users[email] = newUser;
+        localStorage.setItem("users", JSON.stringify(users));
+
+        setSuccess("Account created successfully!");
+        onSignUp(newUser);
         setFirstName("");
         setLastName("");
         setEmail("");
@@ -26,6 +54,8 @@ function SignUp() {
                     className='signup-logo'
                 />
                 <h2>Sign Up</h2>
+                {error && <div className='error-message'>{error}</div>}
+                {success && <div className='success-message'>{success}</div>}
                 <form onSubmit={handleSignUp}>
                     <input
                         type='text'
@@ -57,6 +87,12 @@ function SignUp() {
                     />
                     <button type='submit'>Sign Up</button>
                 </form>
+                <p>
+                    Already have an account?{" "}
+                    <button className='link-button' onClick={onSwitchToLogin}>
+                        Login
+                    </button>
+                </p>
             </div>
         </div>
     );

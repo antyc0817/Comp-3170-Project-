@@ -34,17 +34,20 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject, projectToEdit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!title) return;
+        if (!title.trim()) {
+            alert("Title is required.");
+            return;
+        }
 
         const newProject = {
             id: projectToEdit ? projectToEdit.id : Date.now(),
-            title: title || "",
-            details: detail || "",
+            title: title.trim(),
+            details: detail.trim() || "",
             date: date || "",
-            what: what || "",
-            why: why || "",
+            what: what.trim() || "",
+            why: why.trim() || "",
             deadline: deadline || "",
-            where: where || "",
+            where: where.trim() || "",
         };
 
         onAddProject(newProject);
@@ -131,10 +134,9 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject, projectToEdit }) => {
                         <div>
                             <label>Deadline:</label>
                             <input
-                                type='text'
+                                type='date'
                                 value={deadline}
                                 onChange={(e) => setDeadline(e.target.value)}
-                                placeholder='Project deadline'
                             />
                         </div>
                         <div>

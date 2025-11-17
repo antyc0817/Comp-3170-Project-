@@ -1,12 +1,8 @@
 import React from "react";
 import "../styles/CalendarView.css";
 
-function CalendarView() {
-    const projects = [
-        { date: "2025-10-10", title: "Roof Repair" },
-        { date: "2025-10-12", title: "Elevator Maintenance" },
-        { date: "2025-10-15", title: "Lobby Renovation" },
-    ];
+function CalendarView({ projects }) {
+    const projectList = projects.map(p => ({ date: p.date, title: p.title }));
 
     const year = 2025;
     const month = 9;
@@ -24,7 +20,7 @@ function CalendarView() {
     for (let day = 1; day <= daysInMonth; day++) {
         const dayStr = day.toString().padStart(2, "0");
         const dateStr = `${year}-10-${dayStr}`;
-        const dayProjects = projects.filter((p) => p.date === dateStr);
+        const dayProjects = projectList.filter((p) => p.date === dateStr);
         calendarCells.push(
             <div
                 key={dateStr}

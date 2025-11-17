@@ -1,12 +1,10 @@
 import React from "react";
 import "../styles/Notifications.css";
 
-function Notifications() {
-    const notifications = [
-        { message: "Roof Repair scheduled for 2025-10-10" },
-        { message: "Elevator Maintenance scheduled for 2025-10-12" },
-        { message: "Lobby Renovation scheduled for 2025-10-15" },
-    ];
+function Notifications({ projects }) {
+    const notifications = projects.map(project => ({
+        message: `${project.title} scheduled for ${project.date}`
+    }));
 
     return (
         <div className='notifications-page'>
