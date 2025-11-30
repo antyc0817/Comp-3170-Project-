@@ -102,8 +102,13 @@ function App() {
         setPage("dashboard");
     };
 
-    if (!user && (page !== "login" && page !== "signup")) {
-        setPage("login");
+    useEffect(() => {
+        if (!user && page !== "login" && page !== "signup") {
+            setPage("login");
+        }
+    }, [user, page]);
+
+    if (!user && page !== "login" && page !== "signup") {
         return null;
     }
 
@@ -123,16 +128,30 @@ function App() {
                         onViewDetails={handleViewProjectDetails}
                     />
                 )}
-                {page === "calendar" && user && <CalendarView projects={projects} />}
-                {page === "notifications" && user && <Notifications projects={projects} />}
+                {page === "calendar" && user && (
+                    <CalendarView projects={projects} />
+                )}
+                {page === "notifications" && user && (
+                    <Notifications projects={projects} />
+                )}
                 {page === "projectDetails" && selectedProject && (
                     <ProjectDetails
                         project={selectedProject}
                         onClose={handleCloseProjectDetails}
                     />
                 )}
-                {page === "login" && <Login onLogin={handleLogin} onSwitchToSignUp={() => setPage("signup")} />}
-                {page === "signup" && <SignUp onSignUp={handleLogin} onSwitchToLogin={() => setPage("login")} />}
+                {page === "login" && (
+                    <Login
+                        onLogin={handleLogin}
+                        onSwitchToSignUp={() => setPage("signup")}
+                    />
+                )}
+                {page === "signup" && (
+                    <SignUp
+                        onSignUp={handleLogin}
+                        onSwitchToLogin={() => setPage("login")}
+                    />
+                )}
             </main>
         </div>
     );
