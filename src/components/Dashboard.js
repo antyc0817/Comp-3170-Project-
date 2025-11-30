@@ -81,9 +81,9 @@ function Dashboard({ projects, setProjects, onViewDetails }) {
                         className={`project-card ${project.selected ? "selected" : ""}`}
                         onClick={() => handleSelectProject(project.id)}>
                         <div>
-                            <h3>{project.title}</h3>
-                            <p>{project.details}</p>
-                            <span>{project.date}</span>
+                        <h3>{project.title}</h3>
+                        <p>{project.details}</p>
+                        <span>{project.date}</span>
                         </div>
                         <button
                             className='view-detail-button'

@@ -27,6 +27,11 @@ function CalendarView({ projects }) {
         setCurrentDate(new Date());
     };
 
+    const today = new Date();
+    const todayYear = today.getFullYear();
+    const todayMonth = today.getMonth();
+    const todayDate = today.getDate();
+
     const calendarCells = [];
     for (let i = 0; i < firstDay; i++) {
         calendarCells.push(
@@ -41,6 +46,8 @@ function CalendarView({ projects }) {
         const monthStr = (month + 1).toString().padStart(2, "0");
         const dateStr = `${year}-${monthStr}-${dayStr}`;
         
+        const isToday = year === todayYear && month === todayMonth && day === todayDate;
+        
         const dayProjects = projects.filter((p) => {
             if (!p.date) return false;
             const projectDate = new Date(p.date);
@@ -52,7 +59,7 @@ function CalendarView({ projects }) {
         calendarCells.push(
             <div
                 key={dateStr}
-                className='calendar-cell'>
+                className={`calendar-cell ${isToday ? "today" : ""}`}>
                 <div className='calendar-day'>{day}</div>
                 {dayProjects.map((p, idx) => (
                     <div
