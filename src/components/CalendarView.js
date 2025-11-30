@@ -3,13 +3,23 @@ import "../styles/CalendarView.css";
 
 function CalendarView({ projects }) {
     const [currentDate, setCurrentDate] = useState(new Date());
-    
+
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
-    
+
     const monthNames = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
     ];
 
     const firstDay = new Date(year, month, 1).getDay();
@@ -27,11 +37,6 @@ function CalendarView({ projects }) {
         setCurrentDate(new Date());
     };
 
-    const today = new Date();
-    const todayYear = today.getFullYear();
-    const todayMonth = today.getMonth();
-    const todayDate = today.getDate();
-
     const calendarCells = [];
     for (let i = 0; i < firstDay; i++) {
         calendarCells.push(
@@ -40,26 +45,26 @@ function CalendarView({ projects }) {
                 className='calendar-cell empty'></div>
         );
     }
-    
+
     for (let day = 1; day <= daysInMonth; day++) {
         const dayStr = day.toString().padStart(2, "0");
         const monthStr = (month + 1).toString().padStart(2, "0");
         const dateStr = `${year}-${monthStr}-${dayStr}`;
-        
-        const isToday = year === todayYear && month === todayMonth && day === todayDate;
-        
+
         const dayProjects = projects.filter((p) => {
             if (!p.date) return false;
             const projectDate = new Date(p.date);
-            return projectDate.getFullYear() === year &&
-                   projectDate.getMonth() === month &&
-                   projectDate.getDate() === day;
+            return (
+                projectDate.getFullYear() === year &&
+                projectDate.getMonth() === month &&
+                projectDate.getDate() === day
+            );
         });
-        
+
         calendarCells.push(
             <div
                 key={dateStr}
-                className={`calendar-cell ${isToday ? "today" : ""}`}>
+                className='calendar-cell'>
                 <div className='calendar-day'>{day}</div>
                 {dayProjects.map((p, idx) => (
                     <div
@@ -81,7 +86,9 @@ function CalendarView({ projects }) {
                     onClick={goToPreviousMonth}>
                     ← Previous
                 </button>
-                <h2>{monthNames[month]} {year}</h2>
+                <h2>
+                    {monthNames[month]} {year}
+                </h2>
                 <button
                     className='calendar-nav-button'
                     onClick={goToNextMonth}>
