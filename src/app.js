@@ -48,6 +48,7 @@ function App() {
             why: "Prevent water damage and maintain building safety",
             deadline: "2025-10-10",
             where: "Building rooftop",
+            colorTag: "#e53935",
         },
         {
             id: 2,
@@ -59,6 +60,7 @@ function App() {
             why: "Ensure passenger safety and comply with regulations",
             deadline: "2025-10-12",
             where: "Main elevator shaft",
+            colorTag: "#1a73e8",
         },
         {
             id: 3,
@@ -70,6 +72,7 @@ function App() {
             why: "Improve building aesthetics and tenant satisfaction",
             deadline: "2025-10-15",
             where: "Building lobby",
+            colorTag: "#fb8c00",
         },
     ];
 
