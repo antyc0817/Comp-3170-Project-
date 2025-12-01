@@ -56,7 +56,8 @@ function CalendarView({ projects }) {
         const monthStr = (month + 1).toString().padStart(2, "0");
         const dateStr = `${year}-${monthStr}-${dayStr}`;
 
-        const isToday = year === todayYear && month === todayMonth && day === todayDate;
+        const isToday =
+            year === todayYear && month === todayMonth && day === todayDate;
 
         const dayProjects = projects.filter((p) => {
             if (!p.date) return false;
@@ -73,14 +74,24 @@ function CalendarView({ projects }) {
                 key={dateStr}
                 className={`calendar-cell ${isToday ? "today" : ""}`}>
                 <div className='calendar-day'>{day}</div>
-                {dayProjects.map((p, idx) => (
-                    <div
-                        key={p.id || idx}
-                        className='calendar-project'
-                        title={p.title}>
-                        {p.title}
-                    </div>
-                ))}
+                {dayProjects.map((p, idx) => {
+                    const statusClass = p.status
+                        ? `calendar-project-${p.status}`
+                        : "";
+                    return (
+                        <div
+                            key={p.id || idx}
+                            className={`calendar-project ${statusClass}`}
+                            title={p.title}>
+                            <span
+                                className={`calendar-project-dot ${statusClass}`}
+                            />
+                            <span className='calendar-project-title'>
+                                {p.title}
+                            </span>
+                        </div>
+                    );
+                })}
             </div>
         );
     }

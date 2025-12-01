@@ -49,6 +49,7 @@ function App() {
             deadline: "2025-10-10",
             where: "Building rooftop",
             colorTag: "#e53935",
+            status: "in_progress",
         },
         {
             id: 2,
@@ -61,6 +62,7 @@ function App() {
             deadline: "2025-10-12",
             where: "Main elevator shaft",
             colorTag: "#1a73e8",
+            status: "not_started",
         },
         {
             id: 3,
@@ -73,6 +75,7 @@ function App() {
             deadline: "2025-10-15",
             where: "Building lobby",
             colorTag: "#fb8c00",
+            status: "completed",
         },
     ];
 
@@ -80,7 +83,10 @@ function App() {
         const savedProjects = localStorage.getItem("projects");
         if (savedProjects) {
             try {
-                return JSON.parse(savedProjects);
+                return JSON.parse(savedProjects).map((project) => ({
+                    ...project,
+                    status: project.status || "not_started",
+                }));
             } catch (e) {
                 return defaultProjects;
             }
