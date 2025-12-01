@@ -57,8 +57,20 @@ function Dashboard({ projects, setProjects, onViewDetails }) {
     };
 
     const handleDeleteProject = () => {
+        const selected = projects.find((project) => project.selected);
+        if (!selected) {
+            return;
+        }
+
+        const confirmed = window.confirm(
+            `Are you sure you want to delete the project "${selected.title}"?`
+        );
+        if (!confirmed) {
+            return;
+        }
+
         setProjects((prevProjects) =>
-            prevProjects.filter((project) => !project.selected)
+            prevProjects.filter((project) => project.id !== selected.id)
         );
         showToast("Project deleted successfully!", "success");
     };
