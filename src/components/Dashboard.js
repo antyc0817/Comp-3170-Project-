@@ -1,10 +1,24 @@
 import React, { useState } from "react";
 import "../styles/Dashboard.css";
 import AddProjectModal from "./AddProjectModal";
+import Toast from "./Toast";
 
 function Dashboard({ projects, setProjects, onViewDetails }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [projectToEdit, setProjectToEdit] = useState(null);
+    const [toast, setToast] = useState({
+        isVisible: false,
+        message: "",
+        type: "success",
+    });
+
+    const showToast = (message, type = "success") => {
+        setToast({ isVisible: true, message, type });
+    };
+
+    const hideToast = () => {
+        setToast({ ...toast, isVisible: false });
+    };
 
     const handleAddProject = (newProject) => {
         if (projectToEdit) {
@@ -16,8 +30,10 @@ function Dashboard({ projects, setProjects, onViewDetails }) {
                 )
             );
             setProjectToEdit(null);
+            showToast("Project updated successfully!", "success");
         } else {
             setProjects([...projects, { ...newProject, selected: false }]);
+            showToast("Project saved successfully!", "success");
         }
     };
 
@@ -43,6 +59,7 @@ function Dashboard({ projects, setProjects, onViewDetails }) {
         setProjects((prevProjects) =>
             prevProjects.filter((project) => !project.selected)
         );
+        showToast("Project deleted successfully!", "success");
     };
 
     const selectedProject = projects.find((project) => project.selected);
@@ -78,12 +95,14 @@ function Dashboard({ projects, setProjects, onViewDetails }) {
                 {projects.map((project) => (
                     <div
                         key={project.id}
-                        className={`project-card ${project.selected ? "selected" : ""}`}
+                        className={`project-card ${
+                            project.selected ? "selected" : ""
+                        }`}
                         onClick={() => handleSelectProject(project.id)}>
                         <div>
-                        <h3>{project.title}</h3>
-                        <p>{project.details}</p>
-                        <span>{project.date}</span>
+                            <h3>{project.title}</h3>
+                            <p>{project.details}</p>
+                            <span>{project.date}</span>
                         </div>
                         <button
                             className='view-detail-button'
@@ -105,6 +124,13 @@ function Dashboard({ projects, setProjects, onViewDetails }) {
                 }}
                 onAddProject={handleAddProject}
                 projectToEdit={projectToEdit}
+            />
+
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                isVisible={toast.isVisible}
+                onClose={hideToast}
             />
         </div>
     );
