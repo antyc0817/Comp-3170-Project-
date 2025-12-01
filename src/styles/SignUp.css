@@ -3,16 +3,31 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f9;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+}
+
+.signup-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .signup-box {
-    background-color: #9abed6dd;
+    background-color: rgba(154, 190, 214, 0.95);
     padding: 60px 40px;
     border-radius: 8px;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
     width: 320px;
     text-align: center;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px);
 }
 
 .signup-logo {
