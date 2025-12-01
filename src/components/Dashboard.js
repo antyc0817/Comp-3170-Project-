@@ -132,6 +132,10 @@ function Dashboard({ projects, setProjects, onViewDetails }) {
                         key={project.id}
                         className={`project-card ${
                             project.selected ? "selected" : ""
+                        } ${
+                            project.status === "completed"
+                                ? "status-completed-card"
+                                : ""
                         }`}
                         onClick={() => handleSelectProject(project.id)}>
                         <div>
@@ -148,7 +152,22 @@ function Dashboard({ projects, setProjects, onViewDetails }) {
                                 )}
                             </div>
                             <p>{project.details}</p>
-                            <span>{project.date}</span>
+                            <div className='project-meta-row'>
+                                {project.status && (
+                                    <span
+                                        className={`project-status-pill status-${project.status}`}>
+                                        {project.status === "not_started" &&
+                                            "Not Started"}
+                                        {project.status === "in_progress" &&
+                                            "In Progress"}
+                                        {project.status === "completed" &&
+                                            "Completed"}
+                                    </span>
+                                )}
+                                <span className='project-date'>
+                                    {project.date}
+                                </span>
+                            </div>
                         </div>
                         <button
                             className='view-detail-button'

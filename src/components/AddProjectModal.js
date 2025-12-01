@@ -12,6 +12,7 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject, projectToEdit }) => {
     const [deadline, setDeadline] = useState("");
     const [where, setWhere] = useState("");
     const [colorTag, setColorTag] = useState("#1a73e8");
+    const [status, setStatus] = useState("not_started");
 
     useEffect(() => {
         if (projectToEdit) {
@@ -23,6 +24,7 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject, projectToEdit }) => {
             setDeadline(projectToEdit.deadline || "");
             setWhere(projectToEdit.where || "");
             setColorTag(projectToEdit.colorTag || "#1a73e8");
+            setStatus(projectToEdit.status || "not_started");
         } else {
             setTitle("");
             setDetail("");
@@ -32,8 +34,7 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject, projectToEdit }) => {
             setDeadline("");
             setWhere("");
             setColorTag("#1a73e8");
-            setWhere("");
-            setColorTag("#1a73e8");
+            setStatus("not_started");
         }
     }, [projectToEdit, isOpen]);
 
@@ -54,6 +55,7 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject, projectToEdit }) => {
             deadline: deadline || "",
             where: where.trim() || "",
             colorTag: colorTag || "#1a73e8",
+            status,
         };
 
         onAddProject(newProject);
@@ -65,6 +67,7 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject, projectToEdit }) => {
         setDeadline("");
         setWhere("");
         setColorTag("#1a73e8");
+        setStatus("not_started");
         onClose();
     };
 
@@ -76,6 +79,8 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject, projectToEdit }) => {
         setWhy("");
         setDeadline("");
         setWhere("");
+        setColorTag("#1a73e8");
+        setStatus("not_started");
         onClose();
     };
 
@@ -166,6 +171,16 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject, projectToEdit }) => {
                                 <option value='#e53935'>Red</option>
                                 <option value='#8e24aa'>Purple</option>
                                 <option value='#455a64'>Slate</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Status:</label>
+                            <select
+                                value={status}
+                                onChange={(e) => setStatus(e.target.value)}>
+                                <option value='not_started'>Not Started</option>
+                                <option value='in_progress'>In Progress</option>
+                                <option value='completed'>Completed</option>
                             </select>
                         </div>
                         <button type='submit'>Submit</button>
