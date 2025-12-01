@@ -16,8 +16,16 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    background: radial-gradient(
+            circle at 20% 50%,
+            rgba(120, 119, 198, 0.1) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%
+        );
     pointer-events: none;
 }
 
@@ -108,6 +116,12 @@
     text-align: left;
     word-wrap: break-word;
 }
+.project-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
 
 .project-card p {
     margin: 4px 0 8px 0;
@@ -122,6 +136,15 @@
     font-size: 12px;
     color: #888;
     text-align: left;
+}
+
+.project-color-tag {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
 }
 
 .view-detail-button {

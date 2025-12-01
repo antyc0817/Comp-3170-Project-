@@ -100,7 +100,18 @@ function Dashboard({ projects, setProjects, onViewDetails }) {
                         }`}
                         onClick={() => handleSelectProject(project.id)}>
                         <div>
-                            <h3>{project.title}</h3>
+                            <div className='project-title-row'>
+                                <h3>{project.title}</h3>
+                                {project.colorTag && (
+                                    <span
+                                        className='project-color-tag'
+                                        style={{
+                                            backgroundColor: project.colorTag,
+                                        }}
+                                        title='Color tag'
+                                    />
+                                )}
+                            </div>
                             <p>{project.details}</p>
                             <span>{project.date}</span>
                         </div>

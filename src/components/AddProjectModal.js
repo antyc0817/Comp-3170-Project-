@@ -11,6 +11,7 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject, projectToEdit }) => {
     const [why, setWhy] = useState("");
     const [deadline, setDeadline] = useState("");
     const [where, setWhere] = useState("");
+    const [colorTag, setColorTag] = useState("#1a73e8");
 
     useEffect(() => {
         if (projectToEdit) {
@@ -21,6 +22,7 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject, projectToEdit }) => {
             setWhy(projectToEdit.why || "");
             setDeadline(projectToEdit.deadline || "");
             setWhere(projectToEdit.where || "");
+            setColorTag(projectToEdit.colorTag || "#1a73e8");
         } else {
             setTitle("");
             setDetail("");
@@ -29,6 +31,9 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject, projectToEdit }) => {
             setWhy("");
             setDeadline("");
             setWhere("");
+            setColorTag("#1a73e8");
+            setWhere("");
+            setColorTag("#1a73e8");
         }
     }, [projectToEdit, isOpen]);
 
@@ -48,6 +53,7 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject, projectToEdit }) => {
             why: why.trim() || "",
             deadline: deadline || "",
             where: where.trim() || "",
+            colorTag: colorTag || "#1a73e8",
         };
 
         onAddProject(newProject);
@@ -58,6 +64,7 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject, projectToEdit }) => {
         setWhy("");
         setDeadline("");
         setWhere("");
+        setColorTag("#1a73e8");
         onClose();
     };
 
@@ -147,6 +154,19 @@ const AddProjectModal = ({ isOpen, onClose, onAddProject, projectToEdit }) => {
                                 onChange={(e) => setWhere(e.target.value)}
                                 placeholder='Where will this take place'
                             />
+                        </div>
+                        <div>
+                            <label>Color Tag:</label>
+                            <select
+                                value={colorTag}
+                                onChange={(e) => setColorTag(e.target.value)}>
+                                <option value='#1a73e8'>Blue</option>
+                                <option value='#43a047'>Green</option>
+                                <option value='#fb8c00'>Orange</option>
+                                <option value='#e53935'>Red</option>
+                                <option value='#8e24aa'>Purple</option>
+                                <option value='#455a64'>Slate</option>
+                            </select>
                         </div>
                         <button type='submit'>Submit</button>
                     </form>
